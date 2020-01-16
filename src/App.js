@@ -6,7 +6,10 @@ import { SearchBar, VideoDetail, VideoList } from './components';
 
 import youtube from './api/youtube';
 
+
 class App extends React.Component{
+
+    
 
     state = {
         videos: [],
@@ -15,6 +18,7 @@ class App extends React.Component{
 
     componentDidMount(){
         this.handleSubmit('react js');
+        
     }
 
     onVideoSelect = (video) => {
@@ -22,11 +26,12 @@ class App extends React.Component{
     }
 
     handleSubmit = async (searchTerm) => {
+        // require('dotenv').config();
         const response = await youtube.get('search', {
             params: {
                 part: 'snippet',
                 maxResults: 5,
-                key: 'AIzaSyCOhz5Ewmlg1JpGSCUq_b4W28ms-LyIR_M',
+                key: process.env.REACT_APP_API_KEY,
                 q: searchTerm
             }
         });
